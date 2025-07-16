@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const HeroBanner = () => {
@@ -19,9 +20,11 @@ const HeroBanner = () => {
           </p>
           
           <div className="pt-8">
-            <Button className="btn-minimal text-base px-12 py-4">
-              View Collection
-            </Button>
+            <Link to="/collection">
+              <Button className="btn-minimal text-base px-12 py-4">
+                View Collection
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,110 +1,112 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ShoppingBag, User } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Menu, X, Search, ShoppingBag, User } from 'lucide-react';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Collection', href: '#collection' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
-  ];
-
   return (
-    <>
-      <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'navbar-blur border-b border-border' : 'bg-transparent'
-      }`}>
-        <div className="container-luxury">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <a href="#" className="font-display text-xl lg:text-2xl font-semibold tracking-tight">
-                Lush Attire
-              </a>
-            </div>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'navbar-blur py-4' : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="container-luxury">
+        <div className="flex items-center justify-between">
+          
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link to="/" className="font-display text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity">
+              Lush Attire
+            </Link>
+          </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-12">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors duration-300"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8">
+            <Link 
+              to="/collection" 
+              className={`text-sm font-light transition-colors ${
+                location.pathname === '/collection' 
+                  ? 'text-foreground font-medium' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Collection
+            </Link>
+            <Link 
+              to="/about" 
+              className={`text-sm font-light transition-colors ${
+                location.pathname === '/about' 
+                  ? 'text-foreground font-medium' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              About
+            </Link>
+          </nav>
 
-            {/* Right Side Icons */}
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="hidden lg:flex">
-                <User className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon">
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-2">
+            <Button variant="ghost" size="icon">
+              <Search className="h-5 w-5" />
+            </Button>
+            <Link to="/cart">
+              <Button variant="ghost" size="icon" className="relative">
                 <ShoppingBag className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  2
+                </span>
               </Button>
-              
-              {/* Mobile menu button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </Button>
-            </div>
+            </Link>
+            <Button variant="ghost" size="icon">
+              <User className="h-5 w-5" />
+            </Button>
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-30 lg:hidden">
-          <div className="fixed inset-0 bg-background/95 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className="fixed top-16 left-0 right-0 bg-background border-b border-border">
-            <div className="px-luxury py-8 space-y-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="block text-lg font-light text-foreground hover:text-muted-foreground transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-4 border-t border-border">
-                <a
-                  href="#account"
-                  className="block text-lg font-light text-foreground hover:text-muted-foreground transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Account
-                </a>
-              </div>
-            </div>
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
-      )}
-    </>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden">
+            <nav className="flex flex-col space-y-4 pt-8">
+              <Link 
+                to="/collection" 
+                className="text-lg font-light text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Collection
+              </Link>
+              <Link 
+                to="/about" 
+                className="text-lg font-light text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </Link>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
   );
 };
 
