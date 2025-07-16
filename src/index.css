@@ -1,88 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Definition of the design system for Lush Attire - Ultra minimal luxury fashion */
 
 @layer base {
   :root {
+    /* Minimal luxury color palette */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 0 0% 6.5%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 0 0% 6.5%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --popover-foreground: 0 0% 6.5%;
+    
+    --primary: 0 0% 6.5%;
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 0 0% 96.9%;
+    --secondary-foreground: 0 0% 6.5%;
+    
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45.1%;
+    
+    --accent: 0 0% 96.9%;
+    --accent-foreground: 0 0% 6.5%;
+    
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 6.5%;
+    
     --radius: 0.5rem;
+    
+    /* Custom Lush Attire variables */
+    --lush-tan: 30 15% 85%;
+    --lush-beige: 30 10% 90%;
+    --lush-light-gray: 0 0% 97%;
+    --lush-medium-gray: 0 0% 91%;
+    
+    /* Gradients */
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+    --gradient-fade: linear-gradient(180deg, transparent, hsl(var(--background)));
+    
+    /* Shadows for minimal elevation */
+    --shadow-minimal: 0 1px 3px 0 hsl(var(--foreground) / 0.1);
+    --shadow-soft: 0 4px 6px -1px hsl(var(--foreground) / 0.1);
+    --shadow-elegant: 0 10px 15px -3px hsl(var(--foreground) / 0.1);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elegant: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --background: 0 0% 6.5%;
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 6.5%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 0 0% 6.5%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 6.5%;
+    
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -98,8 +108,166 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-light;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Selection styling */
+  ::selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+}
+
+@layer components {
+  /* Minimal button styles */
+  .btn-minimal {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide;
+    @apply border border-primary bg-transparent text-primary;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-primary hover:text-primary-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply rounded-full;
+  }
+  
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-2 text-sm font-light;
+    @apply bg-transparent text-foreground border-none;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-muted;
+    @apply focus:outline-none;
+  }
+  
+  /* Product card hover effects */
+  .product-card {
+    @apply group cursor-pointer;
+    @apply transition-all duration-500 ease-out;
+  }
+  
+  .product-card:hover {
+    @apply transform scale-[1.02];
+  }
+  
+  .product-image {
+    @apply w-full h-full object-cover;
+    @apply transition-all duration-700 ease-out;
+    @apply group-hover:scale-105;
+  }
+  
+  /* Minimal input styles */
+  .input-minimal {
+    @apply w-full px-0 py-3 text-base font-light;
+    @apply bg-transparent border-0 border-b border-border;
+    @apply focus:outline-none focus:border-primary;
+    @apply transition-colors duration-300;
+    @apply placeholder:text-muted-foreground placeholder:font-light;
+  }
+  
+  /* Scroll snap for smooth sections */
+  .scroll-section {
+    scroll-snap-align: start;
+  }
+  
+  /* Loader animation */
+  .loader-fade {
+    animation: fadeInOut 2s ease-in-out;
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  /* Minimal navbar blur effect */
+  .navbar-blur {
+    backdrop-filter: blur(12px);
+    background-color: hsl(var(--background) / 0.8);
+  }
+}
+
+@layer utilities {
+  /* Custom spacing utilities for luxury layouts */
+  .space-luxury {
+    @apply space-y-16 lg:space-y-24;
+  }
+  
+  .px-luxury {
+    @apply px-8 lg:px-24;
+  }
+  
+  .py-luxury {
+    @apply py-16 lg:py-24;
+  }
+  
+  /* Typography utilities */
+  .text-hero {
+    @apply text-4xl lg:text-6xl xl:text-7xl;
+  }
+  
+  .text-display {
+    @apply text-2xl lg:text-4xl;
+  }
+  
+  .text-large {
+    @apply text-lg lg:text-xl;
+  }
+  
+  /* Layout utilities */
+  .container-luxury {
+    @apply max-w-[1400px] mx-auto px-luxury;
+  }
+  
+  .grid-products {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12;
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
