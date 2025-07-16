@@ -165,7 +165,7 @@
   
   /* Product card hover effects */
   .product-card {
-    @apply group cursor-pointer;
+    @apply cursor-pointer;
     @apply transition-all duration-500 ease-out;
   }
   
@@ -176,7 +176,6 @@
   .product-image {
     @apply w-full h-full object-cover;
     @apply transition-all duration-700 ease-out;
-    @apply group-hover:scale-105;
   }
   
   /* Minimal input styles */

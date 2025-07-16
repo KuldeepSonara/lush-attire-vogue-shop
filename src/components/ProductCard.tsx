@@ -13,19 +13,19 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   return (
-    <div className="product-card">
+    <div className="product-card group">
       <div className="relative aspect-[3/4] overflow-hidden bg-muted/30 mb-6">
         <img
           src={product.image}
           alt={product.name}
-          className="product-image"
+          className="product-image group-hover:scale-105"
           loading="lazy"
         />
         {product.hoverImage && (
           <img
             src={product.hoverImage}
             alt={`${product.name} alternate view`}
-            className="product-image absolute inset-0 opacity-0 group-hover:opacity-100"
+            className="product-image absolute inset-0 opacity-0 group-hover:opacity-100 group-hover:scale-105"
             loading="lazy"
           />
         )}
