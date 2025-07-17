@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600&family=Crimson+Text:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,52 +8,42 @@
 
 @layer base {
   :root {
-    /* Premium neutral color palette */
-    --background: 0 0% 99%;
-    --foreground: 0 0% 8%;
+    /* Minimal luxury color palette */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6.5%;
     
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card-foreground: 0 0% 6.5%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 0 0% 6.5%;
     
-    --primary: 0 0% 12%;
+    --primary: 0 0% 6.5%;
     --primary-foreground: 0 0% 98%;
     
-    --secondary: 28 6% 94%;
-    --secondary-foreground: 0 0% 12%;
+    --secondary: 0 0% 96.9%;
+    --secondary-foreground: 0 0% 6.5%;
     
-    --muted: 30 8% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45.1%;
     
-    --accent: 28 6% 94%;
-    --accent-foreground: 0 0% 12%;
+    --accent: 0 0% 96.9%;
+    --accent-foreground: 0 0% 6.5%;
     
-    --destructive: 0 75% 65%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 28 12% 90%;
-    --input: 28 12% 90%;
-    --ring: 0 0% 12%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 6.5%;
     
     --radius: 0.5rem;
     
-    /* Premium badge colors */
-    --badge-new: 142 71% 45%;
-    --badge-new-foreground: 0 0% 98%;
-    --badge-sale: 358 75% 59%;
-    --badge-sale-foreground: 0 0% 98%;
-    --badge-premium: 45 93% 47%;
-    --badge-premium-foreground: 0 0% 12%;
-    
-    /* Luxury neutral tones */
-    --stone: 24 9% 92%;
-    --stone-foreground: 0 0% 12%;
-    --cream: 43 13% 95%;
-    --cream-foreground: 0 0% 12%;
-    --warm-gray: 20 6% 90%;
-    --warm-gray-foreground: 0 0% 12%;
+    /* Custom Lush Attire variables */
+    --lush-tan: 30 15% 85%;
+    --lush-beige: 30 10% 90%;
+    --lush-light-gray: 0 0% 97%;
+    --lush-medium-gray: 0 0% 91%;
     
     /* Gradients */
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
@@ -130,35 +120,26 @@
   }
   
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-light;
     font-family: 'Inter', sans-serif;
     font-weight: 300;
-    line-height: 1.6;
-    letter-spacing: -0.005em;
-    font-optical-sizing: auto;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
-    font-weight: 500;
-    line-height: 1.3;
-    letter-spacing: -0.015em;
-    font-optical-sizing: auto;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
   
   .font-display {
     font-family: 'Playfair Display', serif;
-    font-optical-sizing: auto;
-  }
-  
-  .font-serif {
-    font-family: 'Crimson Text', serif;
-    font-optical-sizing: auto;
   }
   
   .font-body {
     font-family: 'Inter', sans-serif;
-    font-optical-sizing: auto;
   }
   
   /* Smooth scrolling */
@@ -174,70 +155,37 @@
 }
 
 @layer components {
-  /* Premium badge styles */
-  .badge-new {
-    @apply bg-green-50 text-green-700 border-green-200;
-    background-color: hsl(var(--badge-new) / 0.1);
-    color: hsl(var(--badge-new));
-    border-color: hsl(var(--badge-new) / 0.2);
-  }
-  
-  .badge-sale {
-    @apply bg-red-50 text-red-600 border-red-200;
-    background-color: hsl(var(--badge-sale) / 0.1);
-    color: hsl(var(--badge-sale));
-    border-color: hsl(var(--badge-sale) / 0.2);
-  }
-  
-  .badge-premium {
-    background-color: hsl(var(--badge-premium) / 0.15);
-    color: hsl(var(--badge-premium-foreground));
-    border-color: hsl(var(--badge-premium) / 0.3);
-  }
-  
-  .badge-elegant {
-    @apply bg-stone text-stone-foreground border;
-    background-color: hsl(var(--stone));
-    color: hsl(var(--stone-foreground));
-    border-color: hsl(var(--border));
-  }
-  
   /* Minimal button styles */
   .btn-minimal {
     @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide;
     @apply border border-primary bg-transparent text-primary;
-    @apply transition-all duration-500 cubic-bezier(0.23, 1, 0.32, 1);
-    @apply hover:bg-primary hover:text-primary-foreground hover:shadow-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-primary hover:text-primary-foreground;
     @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
-    @apply rounded-sm;
+    @apply rounded-full;
   }
   
   .btn-ghost {
     @apply inline-flex items-center justify-center px-6 py-2 text-sm font-light;
     @apply bg-transparent text-foreground border-none;
-    @apply transition-all duration-400 cubic-bezier(0.23, 1, 0.32, 1);
-    @apply hover:bg-muted hover:scale-105;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-muted;
     @apply focus:outline-none;
   }
   
-  /* Product card premium effects */
+  /* Product card hover effects */
   .product-card {
     @apply cursor-pointer;
-    @apply transition-all duration-700 cubic-bezier(0.23, 1, 0.32, 1);
-    @apply hover:shadow-2xl;
+    @apply transition-all duration-500 ease-out;
   }
   
   .product-card:hover {
-    @apply transform scale-[1.01] -translate-y-1;
+    @apply transform scale-[1.02];
   }
   
   .product-image {
     @apply w-full h-full object-cover;
-    @apply transition-all duration-1000 cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  
-  .product-image-hover {
-    @apply transition-all duration-1000 cubic-bezier(0.23, 1, 0.32, 1);
+    @apply transition-all duration-700 ease-out;
   }
   
   /* Minimal input styles */
@@ -307,56 +255,28 @@
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12;
   }
   
-  /* Premium animation utilities */
+  /* Animation utilities */
   .animate-fade-in {
-    animation: fadeIn 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation: fadeIn 0.8s ease-out forwards;
   }
   
   .animate-slide-up {
-    animation: slideUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-shimmer {
-    animation: shimmer 2s linear infinite;
+    animation: slideUp 0.8s ease-out forwards;
   }
   
   @keyframes fadeIn {
-    from { 
-      opacity: 0;
-      filter: blur(4px);
-    }
-    to { 
-      opacity: 1;
-      filter: blur(0);
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   
   @keyframes slideUp {
     from { 
       opacity: 0;
-      transform: translateY(40px) scale(0.98);
+      transform: translateY(30px);
     }
     to { 
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
-  }
-  
-  @keyframes float {
-    0%, 100% { 
-      transform: translateY(0px);
-    }
-    50% { 
-      transform: translateY(-10px);
-    }
-  }
-  
-  @keyframes shimmer {
-    0% { background-position: -200px 0; }
-    100% { background-position: calc(200px + 100%) 0; }
   }
 }
