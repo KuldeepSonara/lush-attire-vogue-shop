@@ -32,151 +32,157 @@ const ProductCard = ({ product, onAddToCart, onQuickView }: ProductCardProps) =>
   const hasDiscount = product.originalPrice && product.originalPrice > product.price
 
   return (
-    <div className="group relative">
+    <div className="group relative product-card">
       {/* Product Image Container */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-card rounded-lg mb-4">
+      <div className="relative aspect-[4/5] overflow-hidden bg-card rounded-sm mb-6 shadow-sm">
         <Link to={`/product/${product.id}`}>
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
+            className="product-image group-hover:scale-105"
             loading="lazy"
           />
           {product.hoverImage && (
             <img
               src={product.hoverImage}
               alt={`${product.name} alternate view`}
-              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
+              className="absolute inset-0 product-image-hover opacity-0 group-hover:opacity-100 group-hover:scale-105"
               loading="lazy"
             />
           )}
         </Link>
 
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-2">
+        {/* Premium Badges */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2">
           {product.isNew && (
-            <Badge variant="secondary" className="text-xs px-2 py-1 bg-background/90 backdrop-blur-sm">
-              New
+            <Badge className="badge-new text-xs px-3 py-1 font-medium tracking-wide border">
+              NEW
             </Badge>
           )}
           {product.isSale && (
-            <Badge variant="destructive" className="text-xs px-2 py-1">
-              Sale
+            <Badge className="badge-sale text-xs px-3 py-1 font-medium tracking-wide border">
+              SALE
             </Badge>
           )}
           {hasDiscount && (
-            <Badge variant="secondary" className="text-xs px-2 py-1 bg-background/90 backdrop-blur-sm">
+            <Badge className="badge-premium text-xs px-3 py-1 font-medium tracking-wide border">
               -{Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)}%
             </Badge>
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+        {/* Refined Action Buttons */}
+        <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 cubic-bezier(0.23, 1, 0.32, 1)">
           <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background"
+            className="h-10 w-10 rounded-full bg-background/95 backdrop-blur-md hover:bg-background hover:scale-110 shadow-lg border border-border/30"
             onClick={(e) => {
               e.preventDefault()
               setIsLiked(!isLiked)
             }}
           >
             <Heart 
-              className={`h-4 w-4 transition-colors ${
-                isLiked ? 'fill-red-500 text-red-500' : 'text-foreground'
+              className={`h-4 w-4 transition-all duration-300 ${
+                isLiked ? 'fill-red-500 text-red-500 scale-110' : 'text-foreground hover:text-red-500'
               }`} 
             />
           </Button>
           <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background"
+            className="h-10 w-10 rounded-full bg-background/95 backdrop-blur-md hover:bg-background hover:scale-110 shadow-lg border border-border/30"
             onClick={(e) => {
               e.preventDefault()
               onQuickView?.(product)
             }}
           >
-            <Eye className="h-4 w-4" />
+            <Eye className="h-4 w-4 text-foreground hover:text-primary transition-colors duration-300" />
           </Button>
         </div>
 
-        {/* Quick Add to Cart - Bottom Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+        {/* Elegant Quick Add to Cart */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 transform translate-y-full group-hover:translate-y-0 transition-all duration-500 cubic-bezier(0.23, 1, 0.32, 1)">
           <Button
             onClick={(e) => {
               e.preventDefault()
               onAddToCart?.(product)
             }}
-            className="w-full h-11 bg-background/90 backdrop-blur-sm text-foreground border border-border hover:bg-foreground hover:text-background transition-all duration-300"
+            className="w-full h-12 bg-background/95 backdrop-blur-md text-foreground border border-border/30 hover:bg-foreground hover:text-background hover:scale-[1.02] transition-all duration-400 font-medium tracking-wide shadow-lg"
             variant="outline"
           >
-            <ShoppingBag className="h-4 w-4 mr-2" />
-            Quick Add
+            <ShoppingBag className="h-4 w-4 mr-3" />
+            Add to Cart
           </Button>
         </div>
       </div>
 
-      {/* Product Info */}
-      <div className="space-y-2">
+      {/* Premium Product Info */}
+      <div className="space-y-3">
         {/* Material/Category */}
-        <p className="text-xs text-muted-foreground font-light uppercase tracking-wider">
+        <p className="text-xs text-muted-foreground font-light uppercase tracking-[0.1em] opacity-75">
           {product.material || '100% Premium Cotton'}
         </p>
 
         {/* Product Name */}
         <Link to={`/product/${product.id}`}>
-          <h3 className="font-display text-lg font-medium tracking-tight hover:text-primary transition-colors">
+          <h3 className="font-display text-xl font-medium tracking-tight hover:text-primary transition-all duration-300 leading-tight">
             {product.name}
           </h3>
         </Link>
 
-        {/* Rating */}
-        <div className="flex items-center gap-2">
-          <div className="flex">
+        {/* Refined Rating */}
+        <div className="flex items-center gap-3">
+          <div className="flex gap-0.5">
             {[1, 2, 3, 4, 5].map((star) => (
               <Star
                 key={star}
-                className={`h-3 w-3 ${
-                  star <= rating ? 'fill-primary text-primary' : 'text-muted-foreground'
+                className={`h-3.5 w-3.5 transition-colors duration-200 ${
+                  star <= rating ? 'fill-amber-400 text-amber-400' : 'fill-gray-200 text-gray-200'
                 }`}
               />
             ))}
           </div>
-          <span className="text-xs text-muted-foreground">({rating})</span>
+          <span className="text-xs text-muted-foreground font-light">({rating})</span>
         </div>
 
-        {/* Price */}
-        <div className="flex items-center gap-2">
-          <span className="text-lg font-display font-semibold">
+        {/* Premium Price Display */}
+        <div className="flex items-baseline gap-3 pt-1">
+          <span className="text-xl font-serif font-semibold tracking-tight">
             ${product.price}
           </span>
           {hasDiscount && (
-            <span className="text-sm text-muted-foreground line-through">
+            <span className="text-sm text-muted-foreground line-through font-light">
               ${product.originalPrice}
             </span>
           )}
         </div>
 
-        {/* Color Options Preview */}
+        {/* Elegant Color Options */}
         {product.colors && (
-          <div className="flex gap-1 pt-1">
-            {product.colors.slice(0, 4).map((color, index) => (
-              <div
-                key={index}
-                className="w-4 h-4 rounded-full border border-border"
-                style={{
-                  backgroundColor: color.toLowerCase() === 'white' ? '#ffffff' : 
-                                   color.toLowerCase() === 'black' ? '#000000' :
-                                   color.toLowerCase() === 'grey' ? '#9ca3af' :
-                                   color.toLowerCase() === 'blue' ? '#3b82f6' :
-                                   color.toLowerCase() === 'red' ? '#ef4444' : '#6b7280'
-                }}
-              />
-            ))}
+          <div className="flex items-center gap-2 pt-2">
+            <div className="flex gap-1.5">
+              {product.colors.slice(0, 4).map((color, index) => (
+                <div
+                  key={index}
+                  className="w-5 h-5 rounded-full border-2 border-border hover:border-primary transition-colors duration-300 cursor-pointer hover:scale-110 transform"
+                  style={{
+                    backgroundColor: color.toLowerCase() === 'white' ? '#ffffff' : 
+                                     color.toLowerCase() === 'black' ? '#1a1a1a' :
+                                     color.toLowerCase() === 'grey' ? '#9ca3af' :
+                                     color.toLowerCase() === 'blue' ? '#3b82f6' :
+                                     color.toLowerCase() === 'navy' ? '#1e3a8a' :
+                                     color.toLowerCase() === 'red' ? '#ef4444' :
+                                     color.toLowerCase() === 'cream' ? '#f5f5dc' :
+                                     color.toLowerCase() === 'beige' ? '#e6ddd4' :
+                                     color.toLowerCase() === 'camel' ? '#c19a6b' : '#6b7280'
+                  }}
+                />
+              ))}
+            </div>
             {product.colors.length > 4 && (
-              <span className="text-xs text-muted-foreground ml-1">
-                +{product.colors.length - 4}
+              <span className="text-xs text-muted-foreground font-light">
+                +{product.colors.length - 4} more
               </span>
             )}
           </div>

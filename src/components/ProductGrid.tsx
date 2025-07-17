@@ -103,11 +103,11 @@ const ProductGrid = () => {
   return (
     <section id="collection" className="scroll-section py-luxury bg-background">
       <div className="container-luxury">
-        <div className="text-center mb-16 lg:mb-20">
-          <h2 className="font-display text-display font-semibold tracking-tight mb-6">
+        <div className="text-center mb-20 lg:mb-24">
+          <h2 className="font-display text-5xl lg:text-6xl font-light tracking-tight mb-8 animate-fade-in">
             Essential Collection
           </h2>
-          <p className="text-large font-light text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in">
             Carefully curated pieces that embody our philosophy of minimal luxury and timeless design.
           </p>
         </div>
@@ -143,12 +143,15 @@ const ProductGrid = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-16">
           {mockProducts.map((product, index) => (
             <div
               key={product.id}
-              className="animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="animate-slide-up opacity-0"
+              style={{ 
+                animationDelay: `${index * 0.15}s`,
+                animationFillMode: 'forwards'
+              }}
             >
               <ProductCard 
                 product={product} 
