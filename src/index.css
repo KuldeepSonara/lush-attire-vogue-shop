@@ -190,7 +190,7 @@
   .product-card {
     @apply cursor-pointer;
     @apply transition-all duration-500 ease-out;
-    @apply hover:shadow-elegant;
+    @apply hover:shadow-xl;
   }
   
   .product-card:hover {
