@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -195,13 +195,14 @@
   }
   
   /* Premium product card hover effects */
-  .product-card {
-    @apply cursor-pointer;
+  /* Editorial product card styling */
+  .editorial-card {
+    @apply cursor-pointer bg-background;
     @apply transition-all duration-500 ease-out;
     @apply hover:shadow-xl;
   }
   
-  .product-card:hover {
+  .editorial-card:hover {
     @apply transform scale-[1.01];
   }
   
