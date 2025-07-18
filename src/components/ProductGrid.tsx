@@ -8,18 +8,18 @@ import { SlidersHorizontal } from 'lucide-react'
 const mockProducts = [
   {
     id: '1',
-    name: 'Essential Oversized Hoodie',
-    price: 189,
-    originalPrice: 249,
-    image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=800&fit=crop&crop=center',
+    name: 'Awaken The Flame Dragon Tee',
+    price: 89,
+    originalPrice: 119,
+    image: '/lovable-uploads/ec5f521b-5ea3-4485-968a-1a9bfa51fcf0.png',
     hoverImage: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&h=800&fit=crop&crop=center',
-    rating: 4.8,
-    material: 'Organic Cotton Blend',
-    colors: ['Black', 'White', 'Grey', 'Navy'],
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    rating: 4.9,
+    material: '100% Premium Cotton',
+    colors: ['Black', 'White', 'Charcoal'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     isNew: true,
     isSale: true,
-    description: 'The perfect oversized hoodie crafted from premium organic cotton. Features a relaxed fit and minimalist design.'
+    description: 'Limited edition dragon graphic tee featuring premium cotton construction and exclusive artwork. Small dragon chest print with full back design.'
   },
   {
     id: '2',

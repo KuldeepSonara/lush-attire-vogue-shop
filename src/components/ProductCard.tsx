@@ -32,66 +32,69 @@ const ProductCard = ({ product, onAddToCart, onQuickView }: ProductCardProps) =>
   const hasDiscount = product.originalPrice && product.originalPrice > product.price
 
   return (
-    <div className="group relative">
+    <div className="group relative product-card">
       {/* Product Image Container */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-card rounded-lg mb-4">
+      <div className="relative aspect-[4/5] overflow-hidden bg-card rounded-xl mb-4 shadow-soft">
         <Link to={`/product/${product.id}`}>
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
+            className="w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-105"
             loading="lazy"
           />
           {product.hoverImage && (
             <img
               src={product.hoverImage}
               alt={`${product.name} alternate view`}
-              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:scale-110"
+              className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out group-hover:scale-105"
               loading="lazy"
             />
           )}
         </Link>
 
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex flex-col gap-2">
+        {/* Premium Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        {/* Premium Badges */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2">
           {product.isNew && (
-            <Badge variant="secondary" className="text-xs px-2 py-1 bg-background/90 backdrop-blur-sm">
-              New
+            <Badge className="text-xs px-3 py-1 bg-gradient-to-r from-amber-600 to-amber-700 text-white border-0 font-medium shadow-lg">
+              New Arrival
             </Badge>
           )}
           {product.isSale && (
-            <Badge variant="destructive" className="text-xs px-2 py-1">
-              Sale
+            <Badge className="text-xs px-3 py-1 bg-gradient-to-r from-red-600 to-red-700 text-white border-0 font-medium shadow-lg">
+              Limited Sale
             </Badge>
           )}
           {hasDiscount && (
-            <Badge variant="secondary" className="text-xs px-2 py-1 bg-background/90 backdrop-blur-sm">
-              -{Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)}%
+            <Badge className="text-xs px-3 py-1 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white border-0 font-medium shadow-lg">
+              -{Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)}% OFF
             </Badge>
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+        {/* Premium Action Buttons */}
+        <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
           <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background"
+            className="h-10 w-10 rounded-full bg-background/95 backdrop-blur-md hover:bg-primary hover:text-primary-foreground border border-border/20 shadow-lg transition-all duration-300"
             onClick={(e) => {
               e.preventDefault()
               setIsLiked(!isLiked)
             }}
           >
             <Heart 
-              className={`h-4 w-4 transition-colors ${
-                isLiked ? 'fill-red-500 text-red-500' : 'text-foreground'
+              className={`h-4 w-4 transition-all duration-300 ${
+                isLiked ? 'fill-red-500 text-red-500 scale-110' : 'text-foreground'
               }`} 
             />
           </Button>
           <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background"
+            className="h-10 w-10 rounded-full bg-background/95 backdrop-blur-md hover:bg-primary hover:text-primary-foreground border border-border/20 shadow-lg transition-all duration-300"
             onClick={(e) => {
               e.preventDefault()
               onQuickView?.(product)
@@ -101,18 +104,17 @@ const ProductCard = ({ product, onAddToCart, onQuickView }: ProductCardProps) =>
           </Button>
         </div>
 
-        {/* Quick Add to Cart - Bottom Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+        {/* Premium Quick Add Button */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-all duration-300 ease-out">
           <Button
             onClick={(e) => {
               e.preventDefault()
               onAddToCart?.(product)
             }}
-            className="w-full h-11 bg-background/90 backdrop-blur-sm text-foreground border border-border hover:bg-foreground hover:text-background transition-all duration-300"
-            variant="outline"
+            className="w-full h-12 bg-primary/95 backdrop-blur-md text-primary-foreground hover:bg-primary border-0 rounded-xl font-medium shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
           >
             <ShoppingBag className="h-4 w-4 mr-2" />
-            Quick Add
+            Add to Cart
           </Button>
         </div>
       </div>
